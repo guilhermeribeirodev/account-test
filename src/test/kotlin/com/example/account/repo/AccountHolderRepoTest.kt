@@ -1,4 +1,4 @@
-package com.example.account.holder.repo
+package com.example.account.repo
 
 import com.example.account.domain.AccountHolder
 import com.example.account.repository.AccountHolderRepo

@@ -1,6 +1,7 @@
-package com.example.account.holder.repo
+package com.example.account.repo
 
 import com.example.account.domain.Account
+import com.example.account.domain.AccountHolder
 import com.example.account.repository.AccountRepo
 import org.hamcrest.MatcherAssert
 import org.hamcrest.core.Is
@@ -29,6 +30,7 @@ class AccountRepoTest {
     @Before
     fun setUp() {
         stubbedAccount = Account("10-20-30","123456", balance = BigDecimal.ZERO)
+                .setUpHolder( AccountHolder("Gui", "Rib", "ABC-1234"))
     }
 
     @Test
