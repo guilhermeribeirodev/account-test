@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
+import java.math.BigDecimal
 
 @RunWith(SpringRunner::class)
 @DataJpaTest
@@ -27,12 +28,12 @@ class AccountRepoTest {
 
     @Before
     fun setUp() {
-        stubbedAccount = Account()
+        stubbedAccount = Account("10-20-30","123456", balance = BigDecimal.ZERO)
     }
 
     @Test
     fun itShouldCreateAValidAccountHolder() {
-        MatcherAssert.assertThat(repository.save(Account()), Is.`is`(stubbedAccount))
+        MatcherAssert.assertThat(repository.save(Account("10-20-30","123456", balance = BigDecimal.ZERO)), Is.`is`(stubbedAccount))
         LOGGER.info("test passes")
     }
 }

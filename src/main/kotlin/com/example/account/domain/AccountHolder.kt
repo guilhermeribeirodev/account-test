@@ -4,7 +4,7 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Entity
-class AccountHolder(var name : String, var sortCode : String, @Id var accNumber : String) {
+class AccountHolder(var givenName : String, var surName : String, @Id var idDocument : String) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -12,15 +12,12 @@ class AccountHolder(var name : String, var sortCode : String, @Id var accNumber 
 
         other as AccountHolder
 
-        if (sortCode != other.sortCode) return false
-        if (accNumber != other.accNumber) return false
+        if (idDocument != other.idDocument) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = sortCode.hashCode()
-        result = 31 * result + accNumber.hashCode()
-        return result
+        return idDocument.hashCode()
     }
 }
