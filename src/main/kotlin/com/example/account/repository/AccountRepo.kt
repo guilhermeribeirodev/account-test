@@ -8,4 +8,6 @@ import java.math.BigInteger
 
 @Repository
 interface AccountRepo : JpaRepository<Account, BigInteger> {
+
+    fun findByAccNumber(accNumber : String) : Account
 }

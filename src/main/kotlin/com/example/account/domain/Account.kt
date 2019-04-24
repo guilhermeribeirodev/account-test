@@ -2,6 +2,7 @@ package com.example.account.domain
 
 import lombok.Builder
 import java.math.BigDecimal
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.OneToOne
@@ -9,7 +10,7 @@ import javax.persistence.OneToOne
 @Entity @Builder
 class Account(var sortCode : String, @Id var accNumber : String, var balance : BigDecimal) {
 
-    @OneToOne
+    @OneToOne(cascade = arrayOf(CascadeType.PERSIST))
     lateinit var accountHolder : AccountHolder
 
     fun setUpHolder(accountHolder: AccountHolder) : Account {
@@ -33,5 +34,20 @@ class Account(var sortCode : String, @Id var accNumber : String, var balance : B
         var result = sortCode.hashCode()
         result = 31 * result + accNumber.hashCode()
         return result
+    }
+
+    fun deposit(ammount: BigDecimal) : Account{
+
+            balance.plus(ammount)
+
+        return this
+    }
+
+    fun withdraw(ammount: BigDecimal) : Account{
+
+        if(balance > ammount)
+            balance.plus(ammount)
+
+        return this
     }
 }

@@ -1,1 +1,4 @@
 # Account test
+
+
+./gradlew test
